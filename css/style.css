@@ -1,0 +1,405 @@
+/* =========================================================
+   사라지는 학교, 소멸하는 지역 — 기사 공통 스타일
+   design.css(피그마 추출본)에서 값만 가져와 흐르는 레이아웃으로 재구성
+   ========================================================= */
+
+/* ---------- 1. 디자인 토큰 ---------- */
+:root{
+  /* 배경 (섹션 테마) */
+  --bg-cover:#3E3E3E;
+  --bg-dark:#2E2E2E;          /* CH01 작은학교 */
+  --bg-light:#F3F0E6;         /* CH02~04 */
+  --bg-green:#0F241A;         /* CH05~06 오버레이 기본색 */
+  --bg-green-a:rgba(15,36,26,.84);
+
+  /* 시각화 박스 */
+  --box-dark:#454545;
+  --box-light:#EAE7DC;
+  --box-green:#35473D;
+  --box-paper:#EEEEEE;
+
+  /* 글자 */
+  --ink-light:#FFFFFF;
+  --ink-dark:#282828;
+
+  /* 강조 */
+  --accent-lime:#C4D77A;      /* 어두운 섹션 챕터 라벨 */
+  --accent-olive:#415529;     /* 밝은 섹션 챕터 라벨 */
+  --accent-btn:#4F7C18;       /* 표지 버튼 */
+  --chart-lime:#E5FB8F;
+
+  /* 폰트: 웹폰트 파일은 css/fonts.css에서 연결 */
+  --f-title:'Sungeum','KoPubDotum Bold','Noto Sans KR',sans-serif;
+  --f-bold:'KoPubDotum Bold','KoPubWorld Dotum','Noto Sans KR',sans-serif;
+  --f-body:'KoPubDotum Light','KoPubWorld Dotum','Noto Sans KR',sans-serif;
+  --f-ui:'Noto Sans KR',sans-serif;
+
+  /* 크기 */
+  --w-text:660px;             /* 본문 폭: 한 줄 약 35~38자 (한글 기사 가독성 권장 범위) */
+  --w-viz:740px;              /* 시각화 폭 */
+  --fs-h2:48px;
+  --fs-chapter:20px;
+  --fs-lead:22px;             /* CH01 본문 */
+  --fs-body:18px;
+  --fs-note:15px;
+  --lh-body:1.72;
+  --lh-head:1.36;
+  --gap-block:36px;           /* 문단과 시각화 사이 */
+}
+
+@media (max-width:860px){
+  :root{
+    --fs-h2:30px;
+    --fs-chapter:15px;
+    --fs-lead:18px;
+    --fs-body:17px;
+    --fs-note:13px;
+    --gap-block:28px;
+  }
+}
+
+/* ---------- 2. 기본 ---------- */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--f-body);font-size:var(--fs-body);line-height:var(--lh-body);
+     letter-spacing:-0.01em;color:var(--ink-dark);background:var(--bg-light);word-break:keep-all}
+img{max-width:100%;display:block}
+a{color:inherit}
+
+/* ---------- 3. 섹션 테마 ---------- */
+.sec{position:relative;padding:104px 20px 120px}
+.sec--dark {background:var(--bg-dark);color:var(--ink-light)}
+.sec--light{background:var(--bg-light);color:var(--ink-dark)}
+.sec--green{color:var(--ink-light);
+  background:linear-gradient(var(--bg-green-a),var(--bg-green-a)),var(--sec-bg-img,none) center/cover fixed,var(--bg-green)}
+/* 밝은 섹션 하단 회색 그라데이션 (시안의 Rectangle 4) */
+.sec--fade::after{content:"";position:absolute;left:0;right:0;bottom:0;height:45%;pointer-events:none;
+  background:linear-gradient(180deg,rgba(217,217,217,0) 0%,rgba(115,115,115,.46) 100%)}
+.sec > *{position:relative;z-index:1}
+
+/* ---------- 4. 표지 ---------- */
+.cover{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;color:#fff;padding:80px 20px;
+  background:linear-gradient(rgba(13,33,14,.74),rgba(13,33,14,.74)),var(--cover-img,none) center/cover,var(--bg-cover)}
+.cover h1{font-family:var(--f-title);font-weight:900;font-size:clamp(48px,7vw,100px);line-height:1.24;
+  letter-spacing:-0.03em;margin:0;
+  background:linear-gradient(90deg,#fff 0%,#fff 47%,rgba(255,255,255,.91) 67%,rgba(255,255,255,.73) 79%,rgba(255,255,255,.53) 89%,rgba(255,255,255,.43) 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.cover--photo{background-color:var(--bg-cover);background-position:center;background-size:cover;background-repeat:no-repeat}   /* 사진(index.html에서 지정)이 이미 어둡게 처리돼 있어 덮개 색 없음 */
+.cover h1:has(.cover-logo){background:none;-webkit-text-fill-color:initial;line-height:0}
+.cover-logo{display:block;width:min(680px,86vw);height:auto;margin:0 auto}
+.cover .dek{font-size:clamp(16px,1.6vw,20px);margin:28px 0 0;letter-spacing:-0.05em}
+.cover .read{position:absolute;bottom:56px;left:50%;transform:translateX(-50%);
+  font-family:var(--f-bold);font-size:18px;color:#fff;text-decoration:none;background:var(--accent-btn);
+  border-radius:20px;padding:4px 30px;line-height:32px}
+
+/* ---------- 5. 챕터 머리 ---------- */
+.ch-head{max-width:880px;margin:0 auto 56px;text-align:center}
+.ch-label{font-family:var(--f-bold);font-size:var(--fs-chapter);letter-spacing:-0.03em;margin:0 0 10px}
+.sec--dark .ch-label,.sec--green .ch-label{color:var(--accent-lime)}
+.sec--light .ch-label{color:var(--accent-olive)}
+.ch-head h2{font-family:var(--f-bold);font-weight:700;font-size:var(--fs-h2);line-height:var(--lh-head);
+  letter-spacing:-0.05em;margin:0}
+
+/* ---------- 6. 본문 ---------- */
+.prose{max-width:var(--w-text);margin:0 auto}
+.prose p{margin:0 0 var(--gap-block)}
+.prose--center p{text-align:center}
+.prose--lead{max-width:880px}   /* 줄바꿈한 긴 줄이 한 줄에 들어가게 */
+.prose--lead p{font-size:var(--fs-lead)}   /* CH01 윗부분 문단: 나머지 본문보다 크게 (데스크톱 22px) */
+.note{font-size:var(--fs-note);opacity:.9;margin-top:calc(var(--gap-block) * -0.6)!important}
+.callout{font-family:var(--f-bold);font-size:calc(var(--fs-body) + 4px);text-align:center;margin:72px auto 40px!important}
+/* CH01 '교육부가 내놓은 해법' 큰 제목 + 교육부 인용 (피그마 시안) */
+.solution{max-width:var(--w-viz)}
+.callout--big{font-size:clamp(28px,4.2vw,46px);line-height:1.4;letter-spacing:-0.03em;margin:96px auto 44px!important}
+.callout--big em{font-style:normal;color:var(--chart-lime)}
+.solution-quote{margin:0 auto;text-align:center}
+.solution .solution-quote p{font-family:'Source Han Serif K','Noto Serif KR',serif;font-size:calc(var(--fs-body) + 2px);line-height:1.75;
+  text-align:center;margin:0 0 14px;opacity:.88}
+.solution-quote cite{display:block;font-family:'Source Han Serif K','Noto Serif KR',serif;font-style:normal;font-size:13px;opacity:.7}
+blockquote.quote{max-width:var(--w-text);margin:0 auto var(--gap-block);padding:20px 24px;
+  border-left:3px solid currentColor;font-size:calc(var(--fs-body) - 2px);opacity:.92}
+blockquote.quote cite{display:block;margin-top:8px;font-size:var(--fs-note);font-style:normal;opacity:.8}
+.def{max-width:560px;margin:0 auto var(--gap-block);background:var(--box-paper);color:#131212;
+  font-family:'Source Han Serif K','Noto Serif KR',serif;font-size:17px;text-align:center;padding:28px 32px}
+
+/* 분석 방법 토글 */
+details.method{max-width:var(--w-text);margin:0 auto var(--gap-block);font-size:calc(var(--fs-body) - 3px)}
+details.method summary{font-family:var(--f-ui);font-weight:700;cursor:pointer;list-style:none}
+details.method summary::-webkit-details-marker{display:none}
+details.method summary::after{content:"  ↗"}
+details.method[open] summary::after{content:"  ↙"}
+details.method > div{margin-top:16px;padding:20px 24px;background:var(--box-light)}
+details.method p{margin:0 0 12px}
+details.method .method-more{margin:20px 0 0;font-family:var(--f-bold)}
+details.method .method-more a{color:inherit;text-decoration:underline;text-underline-offset:4px}
+details.method .method-more a:hover{opacity:.75}
+
+/* 미확정 수치 표시 (배포 전 반드시 제거) */
+mark.todo{background:#FFD95A;color:#282828;padding:0 3px;border-radius:2px;cursor:help}  /* 마우스를 올리면 고칠 내용(title) */
+
+/* ---------- 7. 시각화 공통 ---------- */
+.viz{max-width:var(--w-viz);margin:0 auto var(--gap-block);position:relative}
+.viz--full{max-width:none;margin-left:-20px;margin-right:-20px}   /* 스크롤 지도 ②⑤: 화면 전체 폭 */
+.viz iframe{display:block;width:100%;border:0;background:transparent;min-height:var(--viz-min,420px)}
+.viz .viz-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--f-ui);font-size:14px;opacity:.6;pointer-events:none}
+.viz.is-loaded .viz-loading{display:none}
+
+/* 이미지 (삽화·그래프) */
+.art{margin:0 auto var(--gap-block);max-width:var(--w-viz)}
+.art img{display:block;width:100%;height:auto}
+.art.ill{margin-top:8px;margin-bottom:calc(var(--gap-block) + 8px)}
+
+/* CH05·06 공통 배경 사진: 이미 어두운 사진이라 덮개를 옅게 */
+.green-wrap{background-color:var(--bg-green);background-position:center top;background-size:cover;background-repeat:no-repeat}   /* 사진·옅은 덮개는 index.html에서 지정 */
+.green-wrap .sec--green{background:transparent}
+
+/* 아직 만들지 않은 자리 */
+.slot{max-width:var(--w-viz);margin:0 auto var(--gap-block);min-height:220px;padding:28px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  font-family:var(--f-ui);font-size:15px;line-height:1.6;border:1.5px dashed currentColor}
+.slot b{font-size:17px;margin-bottom:6px}
+.slot small{opacity:.75}
+.sec--dark  .slot{background:var(--box-dark);border-color:rgba(255,255,255,.35)}
+.sec--light .slot{background:var(--box-light);border-color:rgba(40,40,40,.3)}
+.sec--green .slot{background:var(--box-green);border-color:rgba(255,255,255,.35)}
+.slot--interactive{border-style:solid;border-width:2px}
+.slot--interactive b::before{content:"◆ ";color:var(--accent-btn)}
+.slot--img{min-height:220px;max-width:480px;background:transparent!important}
+
+/* ---------- 8. 한계·크레딧 ---------- */
+.limits{max-width:var(--w-text);margin:72px auto 0;font-size:calc(var(--fs-body) - 3px)}
+.limits summary{font-family:var(--f-ui);font-weight:700;font-size:var(--fs-body);cursor:pointer;list-style:none}
+.limits summary::-webkit-details-marker{display:none}
+.limits summary::after{content:"  ↗"}
+.limits[open] summary::after{content:"  ↙"}
+.limits summary:hover{text-decoration:underline;text-underline-offset:4px}
+.limits > div{margin-top:8px}
+.limits h4{font-family:var(--f-ui);font-weight:700;font-size:inherit;margin:24px 0 6px}
+.limits p{margin:0}
+.credit{background:#0B1A13;color:#fff;text-align:center;padding:56px 20px;font-size:15px;line-height:1.9}
+.credit strong{display:block;font-family:var(--f-bold);font-size:17px;margin-bottom:10px}
+/* 바이라인: 이름 + 이메일 */
+.credit .byline{list-style:none;margin:6px auto 0;padding:0;display:grid;grid-template-columns:repeat(2,auto);justify-content:center;gap:4px 40px}
+.credit .byline li{text-align:left}
+@media (max-width:560px){.credit .byline{grid-template-columns:auto}}
+.credit .byline b{font-family:var(--f-bold);font-weight:700;margin-right:6px}
+.credit .byline a{color:inherit;opacity:.75;text-decoration:none;font-family:var(--f-ui);font-size:14px}
+.credit .byline a:hover{opacity:1;text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- 9. 접근성 ---------- */
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (max-width:860px){
+  .sec{padding:72px 20px 88px}
+  .ch-head{margin-bottom:40px}
+  .sec--green{background-attachment:scroll}
+}
+
+/* =========================================================
+   10. 용어 풀이 툴팁 (원고 각주) — 지도 ②와 같은 디자인
+   ========================================================= */
+.term{color:#3E6A8E;text-decoration:underline dotted 1.5px;text-underline-offset:4px;cursor:help;outline:none;border-radius:2px}
+.term:hover,.term:focus-visible,.term.on{background:rgba(79,127,168,.12)}
+.sec--dark .term,.sec--green .term{color:#A9CBE8}
+.sec--dark .term:hover,.sec--dark .term:focus-visible,.sec--dark .term.on,
+.sec--green .term:hover,.sec--green .term:focus-visible,.sec--green .term.on{background:rgba(169,203,232,.16)}
+.gloss{position:fixed;z-index:50;max-width:300px;background:#282828;color:#FFFFFF;font-family:var(--f-body);font-size:13px;line-height:1.6;
+  letter-spacing:-0.01em;padding:10px 12px;border-radius:4px;box-shadow:0 4px 14px rgba(0,0,0,.25);pointer-events:none;opacity:0;transition:opacity .15s;left:0;top:0}
+.gloss.on{opacity:1}
+.gloss b{color:#C4D77A;margin-right:4px}
+
+/* =========================================================
+   11. 그래프 공통 (이미지 대신 직접 그림, 화면에 들어오면 나타남)
+   ========================================================= */
+.chart{max-width:var(--w-viz);margin:0 auto calc(var(--gap-block) + 12px)}
+/* 본문 글과 그래프·지도·그림 사이: 본문 한 줄만큼 더 띄움 */
+.prose + :is(.chart,.viz,.art,.overlap),
+:is(.chart,.viz,.art,.overlap) + .prose{margin-top:calc(var(--gap-block) + var(--fs-body) * var(--lh-body))}
+/* '우리 동네 작은학교 찾기' 위는 1.5배 */
+.prose + .viz[data-src*="small-schools"]{margin-top:calc((var(--gap-block) + var(--fs-body) * var(--lh-body)) * 1.5)}
+.chart-title{font-family:var(--f-bold);font-size:18px;line-height:1.6;text-align:center;margin:0 0 10px}
+.chart-unit{font-family:var(--f-ui);font-size:12px;text-align:right;margin:0 0 4px;opacity:.8}
+.chart-src{font-family:var(--f-ui);font-size:12px;line-height:1.6;margin:12px 0 0;opacity:.75}
+.chart-legend{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 22px;font-family:var(--f-ui);font-size:13px;margin-top:12px}
+.chart-legend span{display:inline-flex;align-items:center;gap:7px}
+.chart-legend i{width:12px;height:12px;border-radius:50%;display:inline-block}
+.chart-legend i.sq{border-radius:2px}
+.chart-legend i.ln{width:18px;height:3px;border-radius:2px;position:relative}
+.chart-legend i.ln::after{content:"";position:absolute;left:5px;top:-3.5px;width:8px;height:8px;border-radius:50%;background:inherit}
+.ch-tip{position:fixed;z-index:40;pointer-events:none;background:#FFFFFF;color:#282828;padding:8px 10px;border-radius:3px;
+  font-family:var(--f-ui);font-size:12.5px;line-height:1.55;border:1px solid #D9D5C7;box-shadow:0 4px 14px rgba(40,40,40,.18);
+  max-width:240px;display:none;left:0;top:0}
+.ch-tip b{display:block;font-size:13.5px}
+.ch-tip i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:0}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart svg text{font-family:var(--f-ui)}
+
+/* 그래프 ① 소규모학교 비율 + 학령인구 */
+.g-trend .bar{fill:#E5FB8F}
+.g-trend .bar-v{fill:#F1FBC9;font-size:15px;font-weight:500;text-anchor:middle}
+.g-trend .line{fill:none;stroke:#F2A04B;stroke-width:3.5;stroke-linejoin:round;stroke-linecap:round}
+.g-trend .dot{fill:#F2A04B;stroke:#2E2E2E;stroke-width:2}
+.g-trend .dot-v{fill:#F7B66E;font-size:15px;font-weight:500;text-anchor:middle}
+.g-trend .yr{fill:#CFCFCF;font-size:12px;text-anchor:middle}
+.g-trend .base{stroke:#8A8A8A;stroke-width:1}
+.g-trend .hit{fill:transparent;cursor:default}
+.g-trend .hl{fill:rgba(255,255,255,.06);opacity:0}
+.g-trend .col.on .hl{opacity:1}
+
+/* 그래프 ② 학교급별 비중 */
+.g-share .rows{display:grid;grid-template-columns:76px 1fr;gap:22px 12px;align-items:center}
+.g-share .lbl{font-family:var(--f-bold);font-size:16px;color:#E5FB8F;text-align:right}
+.g-share .bar{display:flex;height:74px;background:#5A5A5A}
+.g-share .bar b,.g-share .bar s{display:flex;align-items:center;justify-content:center;white-space:nowrap;overflow:hidden;
+  font-family:var(--f-body);font-weight:400;font-size:clamp(14px,2vw,24px);letter-spacing:-0.04em;text-decoration:none;
+  transition:flex-basis 1.1s cubic-bezier(.2,.7,.2,1),opacity .6s .5s}
+.g-share .bar b{background:#E5FB8F;color:#201F1F;flex:0 0 var(--v)}
+.g-share .bar s{background:#BABBBD;color:#F4F4F4;flex:1 1 auto;margin-left:2px}
+.g-share .bar span{opacity:1;transition:opacity .5s .9s}
+.g-share:not(.is-in) .bar b{flex-basis:0}
+.g-share:not(.is-in) .bar span{opacity:0}
+.g-share .bar b:hover,.g-share .bar s:hover{filter:brightness(1.06)}
+.g-share .axis{display:flex;justify-content:space-between;margin:10px 0 0 88px;font-family:var(--f-ui);font-size:11px;opacity:.7}
+
+/* 3개교 → 1교 그림 */
+.g-merge{max-width:498px}
+.g-merge text{fill:#fff;font-family:var(--f-bold);text-anchor:middle}
+.g-merge .arrow{fill:none;stroke:#fff;stroke-width:2;stroke-dasharray:6 5}
+.g-merge .head{fill:#fff}
+.g-merge .src,.g-merge .dst{transition:opacity .7s,transform .7s}
+.g-merge .arr{transition:opacity .5s}
+.g-merge:not(.is-in) .src{opacity:0}
+.g-merge:not(.is-in) .arr{opacity:0}
+.g-merge:not(.is-in) .dst{opacity:0;transform:translateX(-12px)}
+.g-merge .src:nth-of-type(2){transition-delay:.12s}.g-merge .src:nth-of-type(3){transition-delay:.24s}
+.g-merge .arr{transition-delay:.6s}.g-merge .dst{transition-delay:1.1s}
+.g-merge .arr path.arrow{stroke-dashoffset:0;animation:none}
+.g-merge.is-in .arr path.arrow{animation:dash-move 1.2s linear infinite}
+@keyframes dash-move{to{stroke-dashoffset:-22}}
+
+/* 일러스트가 카드 위에 겹치는 상자 (예산표·인용) */
+.overlap{max-width:656px;margin:0 auto calc(var(--gap-block) + 12px);position:relative}
+.overlap__img{position:relative;z-index:2;margin:0 auto;width:var(--iw,450px);max-width:78%;height:auto;
+  margin-bottom:calc(var(--iw,450px) * var(--ov,.16) * -1)}
+.overlap__card{position:relative;z-index:1;color:#131212;padding:calc(var(--iw,450px) * var(--ov,.16) + 26px) 28px 30px;text-align:center}
+.overlap__card--gray{background:#EEEEEE}
+.overlap__card--white{background:#FAFAFA}
+.overlap__card h4{margin:0 0 18px;font-family:var(--f-bold);font-size:20px;letter-spacing:-0.02em}
+.budget{width:100%;border-collapse:separate;border-spacing:6px 4px;border:1px solid #2E2E2E;padding:6px 4px;
+  font-family:'Source Han Serif K','Noto Serif KR',serif;font-size:16px;line-height:1.6;color:#131212}
+.budget th,.budget td{padding:4px 4px;vertical-align:middle}
+.budget th{font-weight:700}.budget th[scope="row"]{font-weight:400}
+.budget .total{font-weight:700;font-size:23px;white-space:nowrap}
+.serif-quote{font-family:'Source Han Serif K','Noto Serif KR',serif;font-size:19px;line-height:1.6;margin:0}
+.serif-quote + .serif-quote{margin-top:14px}
+.serif-quote small,.overlap__card small{display:block;font-size:13px;line-height:1.6;margin-top:14px;color:#4A4A4A}
+.overlap .def-card{font-family:'Source Han Serif K','Noto Serif KR',serif;font-size:18px;line-height:1.7}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+.reveal.is-in{opacity:1;transform:none}
+
+/* 그래프 ③ 통학거리 평균 증가량 */
+.g-dist .box{background:#EAE7DC;padding:24px 28px 20px 0}
+.g-dist .rows{display:grid;grid-template-columns:130px 1fr;gap:18px 20px;align-items:center}
+.g-dist .lbl{font-family:var(--f-bold);font-size:16px;text-align:right;color:#131212}
+.g-dist .lbl--muted{color:#9FA0A2}
+.g-dist .track{height:clamp(58px,7vw,98px)}
+.g-dist .bar{height:100%;width:var(--v);display:flex;align-items:center;justify-content:flex-end;padding-right:22px;
+  font-family:var(--f-ui);font-weight:700;color:#fff;letter-spacing:-0.04em;white-space:nowrap;
+  transform-origin:left center;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.g-dist .bar span{transition:opacity .4s 1s}
+.g-dist .bar--a{background:#CDE46A;font-size:clamp(20px,2.6vw,32px)}
+.g-dist .bar--b{background:#BABBBD;font-size:clamp(17px,2vw,24px);transition-delay:.15s}
+.g-dist:not(.is-in) .bar{transform:scaleX(0)}
+.g-dist:not(.is-in) .bar span{opacity:0}
+.g-dist .base{height:1px;background:rgba(0,0,0,.18);margin:20px 0 0 150px}
+
+/* 그래프 ④ 강원도 통폐합 초등학교 와플 */
+.g-waffle .wrap{display:flex;gap:24px;align-items:center;justify-content:center;flex-wrap:wrap}
+.g-waffle .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(7px,1.6vw,17px);width:min(593px,100%)}
+.g-waffle .grid i{aspect-ratio:1;background:#727473;display:block;transform:scale(.4);opacity:0;transition:transform .45s,opacity .45s}
+.g-waffle .grid i.dec{background:#E5FB8F}
+.g-waffle.is-in .grid i{transform:none;opacity:1}
+.g-waffle .lg{display:flex;flex-direction:column;gap:6px;font-family:var(--f-ui);font-size:13px}
+.g-waffle .lg span{display:inline-flex;align-items:center;gap:8px}
+.g-waffle .lg i{width:12px;height:12px;display:inline-block;border-radius:2px}
+.g-waffle .lg b{font-weight:700}
+
+/* 그래프 ⑤ 학령인구 감소 */
+.g-pop .box{background:#35473D;padding:34px 24px 26px}
+.g-pop .groups{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.g-pop h5{margin:0 0 16px;text-align:center;font-family:var(--f-bold);font-size:14px;font-weight:700}
+.g-pop .plot{position:relative;height:clamp(210px,30vw,270px);display:flex;align-items:flex-end;justify-content:center;gap:14px;border-bottom:2px solid #8A948E}
+.g-pop .col{width:clamp(56px,10vw,74px);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.g-pop .val{font-family:var(--f-ui);font-weight:500;font-size:clamp(13px,1.3vw,16px);margin-bottom:6px;white-space:nowrap;transition:opacity .4s 1s}
+.g-pop .bar{width:100%;background:#BABBBD;height:var(--h);transform-origin:bottom;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.g-pop .col + .col .bar{background:#E5FB8F;transition-delay:.25s}
+.g-pop:not(.is-in) .bar{transform:scaleY(0)}
+.g-pop:not(.is-in) .val,.g-pop:not(.is-in) .pct,.g-pop:not(.is-in) .arrowsvg{opacity:0}
+.g-pop .x{display:flex;justify-content:center;gap:14px;margin-top:6px}
+.g-pop .x span{width:clamp(56px,10vw,74px);text-align:center;font-family:var(--f-ui);font-size:12px;color:#E4E3E3}
+.g-pop .pct{position:absolute;left:65%;top:2%;font-family:var(--f-ui);font-weight:700;font-size:clamp(24px,3.4vw,36px);color:#E5FB8F;transition:opacity .5s 1.5s}
+.g-pop .arrowsvg{position:absolute;left:47%;top:8%;width:20%;height:auto;transition:opacity .5s 1.3s}
+.g-pop .arrowsvg path.stem{stroke-dasharray:200;stroke-dashoffset:200;transition:stroke-dashoffset .8s 1.3s ease-out}
+.g-pop.is-in .arrowsvg path.stem{stroke-dashoffset:0}
+
+/* 그래프 ⑥ 교부금 개편안 */
+.g-fund .box{background:#2E2E2E;padding:22px 12% 18px}
+.g-fund .unit{text-align:right;font-family:var(--f-ui);font-size:11px;opacity:.75;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:6px;margin:0}
+.g-fund .total{text-align:center;font-family:var(--f-ui);font-weight:700;font-size:clamp(24px,2.6vw,32px);color:#E5FB8F;margin:10px 0 8px}
+.g-fund .plot{position:relative;height:clamp(230px,32vw,290px);display:flex;justify-content:space-around;align-items:flex-end;border-top:1.5px dashed rgba(255,255,255,.55)}
+.g-fund .tag{position:absolute;left:0;top:0;transform:translate(-30%,-50%);background:#F3F1E6;color:#2E2E2E;font-family:var(--f-ui);font-weight:700;font-size:11px;padding:2px 8px;border-radius:2px;z-index:2}
+.g-fund .bar{width:27%;height:100%;display:flex;flex-direction:column}
+.g-fund .bar div{display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--f-ui);font-weight:700;color:#2E2E2E;
+  transform-origin:bottom;transition:transform .8s cubic-bezier(.2,.7,.2,1),opacity .6s}
+.g-fund .cream{background:#F3F0E6;font-size:clamp(17px,2.1vw,24px)}
+.g-fund .lime{background:#E5FB8F;font-size:clamp(14px,1.7vw,20px)}
+.g-fund .dash{border:2px dashed #E5FB8F;color:#E5FB8F!important;font-size:clamp(14px,1.6vw,18px);background:transparent;transition-delay:1s!important}
+.g-fund .dash small{font-weight:400;font-size:11px;color:#fff;margin-top:2px}
+.g-fund .bar .cream{transition-delay:.35s}
+.g-fund:not(.is-in) .bar div{transform:scaleY(0);opacity:0}
+.g-fund .x{display:flex;justify-content:space-around;margin-top:8px;font-family:var(--f-ui);font-weight:700;font-size:14px}
+.g-fund .x span{width:27%;text-align:center}
+
+@media (max-width:640px){
+  .g-share .rows{grid-template-columns:56px 1fr;gap:16px 8px}.g-share .lbl{font-size:13px;white-space:nowrap}
+  .g-share .bar{height:52px}.g-share .axis{margin-left:64px}
+  .g-dist .box{padding-right:14px}.g-dist .rows{grid-template-columns:84px 1fr;gap:14px 10px}.g-dist .lbl{font-size:13px}.g-dist .base{margin-left:94px}
+  .g-dist .bar{padding-right:12px}
+  .g-pop .groups{gap:10px}.g-pop .box{padding:26px 10px 20px}.g-pop h5{font-size:12px}.g-pop .pct{left:auto;right:0;top:-6px;font-size:22px}.g-pop .arrowsvg{display:none}
+  .budget{font-size:12px;border-spacing:2px}.budget .total{font-size:16px}
+  .overlap__card{padding-left:12px;padding-right:12px}.overlap__card h4{font-size:16px}
+  .serif-quote{font-size:16px}.overlap .def-card{font-size:15px}
+  .g-fund .box{padding-left:6%;padding-right:6%}
+}
+@media (prefers-reduced-motion:reduce){
+  .reveal,.g-share .bar b,.g-share .bar span,.g-dist .bar,.g-pop .bar,.g-pop .val,.g-pop .pct,.g-pop .arrowsvg,.g-fund .bar div,.g-waffle .grid i,.g-merge *{
+    transition:none!important;animation:none!important}
+}
+
+/* =========================================================
+   12. 왼쪽 챕터 목차 (넓은 화면에서만)
+   ========================================================= */
+.toc{position:fixed;left:28px;top:50%;transform:translateY(-50%);z-index:30;width:172px;
+  opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s,color .4s;color:#FFFFFF;font-family:var(--f-bold)}
+.toc.show{opacity:1;visibility:visible}
+/* 목차 빈 영역이 아래 지도·카드의 마우스 이벤트(용어 툴팁 등)를 가로막지 않게: 링크만 클릭 가능 */
+.toc,.toc .rail,.toc ol,.toc li{pointer-events:none}
+.toc a{pointer-events:auto}
+.toc.on-light{color:#282828}
+.toc .rail{position:relative;padding-left:22px}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc .track,.toc .fill{position:absolute;left:0;top:0;width:3px;border-radius:2px}
+.toc .track{bottom:0;background:currentColor;opacity:.28}
+.toc .fill{height:0;background:#C4D77A;transition:height .2s linear,background .4s}
+.toc.on-light .fill{background:#4F7C18}
+.toc li + li{margin-top:44px}
+.toc a{display:block;text-decoration:none;font-size:14px;line-height:1.45;letter-spacing:-0.03em;opacity:.78;transition:opacity .3s,color .3s}
+.toc a small{display:block;font-family:var(--f-ui);font-size:11px;font-weight:700;letter-spacing:.04em;opacity:.7;margin-bottom:2px}
+.toc a:hover{opacity:1}
+.toc a[aria-current="true"]{opacity:1;color:#C4D77A}
+.toc.on-light a[aria-current="true"]{color:#4F7C18}
+/* 화면 전체를 쓰는 스크롤 지도 위에서는 글자를 접고 선만 */
+.toc.compact a{opacity:0;pointer-events:none}
+.toc.compact .track{opacity:.45}
+@media (max-width:1259px){.toc{display:none}}

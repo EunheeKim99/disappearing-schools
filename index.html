@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>사라지는 학교, 소멸하는 지역 | DIVA</title>
+<meta name="description" content="전국의 소규모 공립초등학교 2,160개교 통폐합 시뮬레이션 분석">
+<meta property="og:title" content="사라지는 학교, 소멸하는 지역">
+<meta property="og:description" content="전국의 소규모 공립초등학교 2,160개교 통폐합 시뮬레이션 분석">
+<!-- 공유 미리보기 (카카오톡·SNS). 배포 주소가 정해지면 아래 두 줄의 상대 주소를
+     https://배포주소/assets/og-image.jpg 처럼 전체 주소로 바꾸세요 (카카오톡·페이스북은 전체 주소만 인식) -->
+<meta property="og:type" content="article">
+<meta property="og:image" content="assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="사라지는 학교, 소멸하는 지역 — 전국의 소규모 공립초등학교 2,160개교 통폐합 시뮬레이션 분석">
+<!-- <meta property="og:url" content="https://배포주소/"> -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="assets/og-image.jpg">
+<meta name="theme-color" content="#0F241A">
+<!-- 파비콘 -->
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ 표지 ============ -->
+<!-- 표지 사진은 이미 어둡게 처리된 이미지라 덮개 색 없이 사용 -->
+<header class="cover cover--photo" style="background-image:url('assets/img/00_title_cover.webp')">
+  <h1><img class="cover-logo" src="assets/title-logo.png" alt="사라지는 학교, 소멸하는 지역" width="611" height="204"></h1>
+  <p class="dek">전국의 소규모 공립초등학교 2,160개교<br>통폐합 시뮬레이션 분석</p>
+  <a class="read" href="#ch01">기사 읽기 ↓</a>
+</header>
+
+<!-- 왼쪽 챕터 목차 (넓은 화면에서만 보임) -->
+<nav class="toc" aria-label="챕터 목차">
+  <div class="rail"><span class="track" aria-hidden="true"></span><span class="fill" aria-hidden="true"></span>
+  <ol>
+    <li><a href="#ch01"><small>CHAPTER 01</small>열 곳 중 네 곳은 ‘작은학교’</a></li>
+    <li><a href="#ch02"><small>CHAPTER 02</small>‘통폐합 시나리오’ 구현해보니</a></li>
+    <li><a href="#ch03"><small>CHAPTER 03</small>더 멀어지는 학교</a></li>
+    <li><a href="#ch04"><small>CHAPTER 04</small>마지막 학교가 사라지는 읍면</a></li>
+    <li><a href="#ch05"><small>CHAPTER 05</small>학교가 사라지면 사람들도 떠난다</a></li>
+    <li><a href="#ch06"><small>CHAPTER 06</small>통폐합 전에 답해야 할 것들</a></li>
+  </ol>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============ CHAPTER 01 ============ -->
+<section class="sec sec--dark" id="ch01">
+  <div class="ch-head">
+    <p class="ch-label">CHAPTER 01</p>
+    <h2>전국 초등학교 10곳 중 네 곳은 ‘작은학교’,<br>교육부는 통폐합을 해법으로 내놨다</h2>
+  </div>
+
+  <div class="overlap reveal" style="--iw:525px;--ov:.12">
+    <img class="overlap__img" src="assets/img/ch01_image1.webp" width="583" height="248" alt="목탄으로 그린 학교 건물 그림" loading="lazy">
+    <div class="overlap__card overlap__card--gray"><p class="def-card">면·도서·벽지 지역 60명 이하, 읍 지역 초등 120명 이하 및 중등 180명 이하,<br>도시 지역 초등 240명 이하 및 중등 300명 이하인 학교</p></div>
+  </div>
+
+  <div class="prose prose--center prose--lead">
+    <p>‘작은학교’라고도 불리는 소규모학교는<br>재학 중인 학생 수가 일정 수준을<br>넘지 못하는 학교들을 가리키는 말입니다.</p>
+  </div>
+
+  <figure class="chart g-trend" style="max-width:724px">
+    <p class="chart-title">지난 10년간 소규모학교와 학령인구 추이</p>
+    <p class="chart-unit">(전체 학교 대비 %, 천 명)</p>
+    <div class="g-trend__plot" role="img" aria-label="2016년부터 2025년까지 전체 학교 중 소규모학교 비율은 23%에서 31.3%로 늘고, 학령인구는 867만 2천 명에서 697만 8천 명으로 줄었다는 그래프"></div>
+    <div class="chart-legend"><span><i class="ln" style="background:#F2A04B"></i>전체 학교 중 소규모학교 비율</span><span><i style="background:#E5FB8F"></i>학령인구</span></div>
+  </figure>
+
+  <div class="prose prose--center prose--lead">
+    <p>교육부가 2026년 6월 발표한 정책자료에 따르면,<br>2025년 기준 전국의 소규모학교는 3,720곳으로 전체 학교의 31.3%를 차지했습니다.<br>10년 전인 2016년에 비해 약 40% 늘어난 규모입니다.<br>저출생으로 <span class="term" tabindex="0" data-gloss-title="학령인구" data-gloss="6~21세 사이의 인구로 교육인구 규모를 가늠할 수 있는 일차적 요인">학령인구</span>가 줄어든 탓입니다.</p>
+  </div>
+
+  <figure class="chart g-share" style="max-width:768px" aria-label="학교급별 전체 학교 대비 소규모학교 비중: 초등학교 38.5%(2,381개교), 중학교 31.5%(1,038개교), 고등학교 12.6%(301개교)">
+    <p class="chart-title">학교급별 전체 학교 대비 소규모학교 비중</p>
+    <p class="chart-unit">(전체 대비 %)</p>
+    <div class="rows">
+      <span class="lbl">초등학교</span>
+      <div class="bar"><b style="--v:38.5%" data-tip="초등학교|소규모학교 38.5%|2,381개교 (전체 6,192개교)"><span>38.5% (2,381개교)</span></b><s data-tip="초등학교|일반학교 61.5%|3,811개교"><span>61.5% (3,811개교)</span></s></div>
+      <span class="lbl">중학교</span>
+      <div class="bar"><b style="--v:31.5%" data-tip="중학교|소규모학교 31.5%|1,038개교 (전체 3,292개교)"></b><s data-tip="중학교|일반학교 68.5%|2,254개교"></s></div>
+      <span class="lbl">고등학교</span>
+      <div class="bar"><b style="--v:12.6%" data-tip="고등학교|소규모학교 12.6%|301개교 (전체 2,387개교)"></b><s data-tip="고등학교|일반학교 87.4%|2,086개교"></s></div>
+    </div>
+    <div class="axis" aria-hidden="true"><span>0</span><span>20</span><span>40</span><span>60</span><span>80</span><span>100</span></div>
+    <div class="chart-legend"><span><i class="sq" style="background:#E5FB8F"></i>소규모학교</span><span><i class="sq" style="background:#BABBBD"></i>일반학교</span></div>
+  </figure>
+
+  <div class="prose prose--center prose--lead">
+    <p>그중에서도 초등학교의 비중이 가장 높습니다.<br>소규모 초등학교는 전국의 38.5%, 총 2,381곳에 달합니다.</p>
+    <p>또한 소규모 초등학교는 특히 인구가 줄어드는 지역에 몰려 있습니다.<br>DIVA팀이 2026년 교육부 기준으로 집계한 결과,<br><span class="term" tabindex="0" data-gloss-title="인구감소지역" data-gloss="지방자치분권 및 균형성장에 관한 특별법 제2조제12호에 따라 지정된 지역으로 2021년 10월 기준 인구감소지역 89개소, 인구감소관심지역 18개소">인구감소지역</span>의 소규모 초등학교 비중은 77.9%.<br>그 외 지역 30.6%의 2.5배가 넘습니다.</p>
+  </div>
+
+  <!-- 인터랙티브 ① 소규모 초등학교 지도 + 학교 검색 -->
+  <figure class="viz" data-src="viz/small-schools/index.html" data-wheel-zoom="on" data-title="우리 동네 작은학교 찾기: 시군구별 소규모 초등학교 비중 지도" style="--viz-min:900px">
+    <div class="viz-loading">지도를 불러오는 중…</div>
+  </figure>
+
+  <div class="prose solution">
+    <p class="callout callout--big">교육부가 내놓은 해법은<br><em>‘3개교 → 1교’</em> 통폐합 모델</p>
+    <blockquote class="solution-quote">
+      <p>“지속적인 학생 수 감소로 단위 학교 운영이 곤란한 소규모학교를<br>학교 통합을 통해 지역 ‘거점학교’화하여 교육의 질을 제고한다”</p>
+      <cite>교육부, 「소규모학교 혁신을 통한 지역 교육력 제고 방안」 중</cite>
+    </blockquote>
+  </div>
+
+  <figure class="chart g-merge" role="img" aria-label="A학교, B학교, C학교가 B학교 한 곳으로 통합되는 그림">
+    <svg viewBox="0 0 553 300" aria-hidden="true">
+      <defs><marker id="mh" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="head" d="M0 0 L10 5 L0 10 z"/></marker></defs>
+      <g class="src"><image href="assets/img/school_icon.png" x="50" y="22" width="80" height="60"/><text x="90" y="104" font-size="15">A학교</text></g>
+      <g class="src"><image href="assets/img/school_icon.png" x="50" y="112" width="80" height="60"/><text x="90" y="194" font-size="15">B학교</text></g>
+      <g class="src"><image href="assets/img/school_icon.png" x="50" y="202" width="80" height="60"/><text x="90" y="284" font-size="15">C학교</text></g>
+      <g class="arr">
+        <path class="arrow" d="M152 74 L276 130" marker-end="url(#mh)"/>
+        <path class="arrow" d="M152 156 L278 156" marker-end="url(#mh)"/>
+        <path class="arrow" d="M152 236 L276 180" marker-end="url(#mh)"/>
+      </g>
+      <g class="dst"><image href="assets/img/school_icon.png" x="300" y="94" width="135" height="102"/><text x="367" y="226" font-size="21">B학교</text></g>
+    </svg>
+  </figure>
+
+  <div class="prose">
+    <p>이에 교육부는 지난 6월 「교육혁신선도지역 기본계획(시안)」과 「소규모학교 혁신을 통한 지역 교육력 제고 방안」을 함께 발표했습니다. 소규모 학교가 겪는 어려움을 해소하고, 지역 주민의 이탈을 막기 위해선 ‘지역 거점 학교’를 키워야 한다는 것을 골자로 합니다.</p>
+    <p>교육혁신선도지역의 1유형 대상인 인구감소(관심)지역은 ‘소규모학교 혁신’을 함께 추진해야 합니다. 교육부는 그 방안 중 하나로 ‘학교 통합’을 제시했습니다. 대표 모델은 근처 3곳의 학교를 한 곳으로 합치는 ‘3개교 → 1교 통합안’입니다.</p>
+  </div>
+
+  <div class="overlap reveal" style="--iw:450px;--ov:.17">
+    <img class="overlap__img" src="assets/img/ch01_image3.webp" width="1200" height="600" alt="고무줄로 묶은 지폐 다발 그림" loading="lazy">
+    <div class="overlap__card overlap__card--gray">
+      <h4>&lt;선도지역에 투입 가능한 예산(안)&gt;</h4>
+      <table class="budget">
+        <thead><tr><th scope="col">재정</th><th scope="col">학교 통합 인센티브</th><th scope="col">선도지역 지원금</th><th scope="col">학교 운영비</th><th scope="col">총계</th></tr></thead>
+        <tbody>
+          <tr><th scope="row"></th><td>260억원(3개→1개)</td><td>20억원+10억원</td><td>1~10억원</td><td rowspan="3" class="total">약 400억원</td></tr>
+          <tr><th scope="row">인프라</th><th>기숙사 설치</th><th>학교복합시설</th><th>폐교활용 지원</th></tr>
+          <tr><th scope="row"></th><td>50억원</td><td>40억원</td><td>20억원</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>동시에 통폐합 인센티브를 기존보다 50% 이상 확대했습니다. 3개 학교를 1개로 통합할 경우, 한 지역이 받을 수 있는 예산은 최대 400억 원에 이릅니다.</p>
+  </div>
+
+  <div class="overlap reveal" style="--iw:270px;--ov:.36">
+    <img class="overlap__img" src="assets/img/ch01_image5.webp" width="1200" height="1200" alt="종이 위에 연필이 놓인 그림" loading="lazy">
+    <blockquote class="overlap__card overlap__card--gray" style="margin:0">
+      <p class="serif-quote">“지역 여건과 특성을 반영한 자율적인 학교 혁신이 이루어질 수 있도록 교육부가 운영해 온 「적정규모학교 육성 및 분교장 개편 권고기준(2015)」을 폐지한다.”</p>
+      <small>교육부 보도자료(6월 11일), ‘지역의 미래를 위한 교육혁신 지역 내 양질의 교육생태계 조성 추진’</small>
+    </blockquote>
+  </div>
+
+  <div class="prose">
+    <p>학부모 과반수 동의 지침이 담긴 「적정규모학교 육성 및 분교장 개편 권고기준(2015)」도 폐지했습니다. 절차상 학부모의 동의가 없어도 통폐합이 가능해진 것입니다.</p>
+    <p>각 지역의 통폐합 계획도 구체화되고 있습니다. 지난 3일 공개된 2027년 교육혁신선도지역 지정 결과, 선정된 인구소멸(관심)지역 32곳 중 22개(68.8%) 지역에서 중장기 통폐합 계획을 제출했습니다.</p>
+    <p>그럼에도 교육부는 통폐합을 유도하려는 정책은 아니라는 입장입니다. 최교진 교육부 장관은 관련 질문에 “전혀 그렇지 않다”며, 통폐합 위기에 있는 학교를 어떻게 살릴지 지역이 자율적으로 선택하도록 한 것이라고 설명했습니다.</p>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 02 ============ -->
+<section class="sec sec--light" id="ch02">
+  <div class="ch-head">
+    <p class="ch-label">CHAPTER 02</p>
+    <h2>교육부 ‘통폐합 시나리오’ 구현해보니</h2>
+  </div>
+
+  <div class="prose">
+    <p>인구소멸지역에 ‘보낼 만한 학교’를 만들면 소규모학교가 겪는 어려움을 해소하고 지역소멸을 막을 수 있을 것이라는 교육부의 전망. 하지만 일부 지역 주민들은 해당 정책대로 통폐합이 이뤄진다면 면 단위의 지역도 사라질 수 있다며 사업에 반대하고 있습니다. 지역에 몇 안 남은 학교가 없어지면 사람들도 떠난다는 우려의 목소리입니다.</p>
+    <p>DIVA팀은 교육부가 제시한 대표 모델인 ‘3개교 → 1개교 통합’이 전국에 걸쳐 현실화된 미래를 그려보고자 시뮬레이션 분석을 실시했습니다. 초, 중, 고 학교급 중에서도 소규모학교 비중이 가장 높고, 연령이 낮아 통폐합 부담이 큰 초등학교를 분석 대상으로 선정했습니다.</p>
+  </div>
+
+  <details class="method">
+    <summary>분석 방법 더 보기</summary>
+    <div>
+      <p>분석 후보는 공공데이터포털에서 제공하는 전국초중등학교위치표준데이터의 전국 초등학교 6,302개교입니다. 그중 공립·소규모·본교 조건을 충족하는 학교가 2,513개교입니다. 이 가운데 아래 절차를 거쳐 최종 시뮬레이션 대상으로 확정된 학교가 2,160개교입니다.</p>
+      <p>통계청 집계구별 초등학령인구를 통학구역 내 공립초등학교에 나누고, 학교별 실제 재학생 수에 맞춰 보정해 학생 규모를 추정했습니다. 개별 학생을 직접 센 값이 아닌 추정치입니다.</p>
+      <p><b>시뮬레이션 절차 및 방법</b><br>같은 교육지원청 안에서 직선거리 10㎞ 이하인 학교들을 세 곳씩 묶어 후보 조합 48,273개를 만들었습니다. 교실당 28명 기준으로 세 학교의 학생을 모두 수용할 수 있는 조합만 남겼고, 네이버 Directions API로 폐교 대상 학교에서 통합중심학교까지의 자동차 도로 경로를 계산했습니다. 페리 경로와 극단적 경로(최대 80분 초과 또는 40분 초과이면서 우회 비율 3배 초과)는 제외했습니다.</p>
+      <p>하나의 학교가 여러 후보 조합에 포함될 수 있어 남은 후보 조합 41,744개 가운데 교육지원청별로 학교가 겹치지 않도록 720개 군집을 확정했습니다. 각 군집에서는 통합 후 추가 통학시간 부담이 가장 작은 학교를 통합중심학교로 선정했습니다. 통학시간은 수집 시간대에 따라 변동이 커서 통학 부담 비교는 도로 통학거리로 제시합니다. 이렇게 확정된 720개 군집(3개교씩 총 2,160개교)이 이번 시뮬레이션의 최종 대상입니다.</p>
+      <p class="method-more"><a href="https://github.com/seo6347/Disappearing-Schools-Declining-Communities.git" target="_blank" rel="noopener">🔎 자세한 분석 과정이 궁금하다면?</a></p>
+    </div>
+  </details>
+
+  <!-- 인터랙티브 ② 통폐합 시나리오 (스크롤 지도). 원고의 세 문단과 각주는 지도 카드 안에 들어 있음 -->
+  <figure class="viz viz--full" data-src="viz/ch02-scenario/index.html" data-title="2,160개교 통폐합 시나리오 지도" style="--viz-min:100vh">
+    <div class="viz-loading">지도를 불러오는 중…</div>
+  </figure>
+</section>
+
+<!-- ============ CHAPTER 03 ============ -->
+<section class="sec sec--light" id="ch03">
+  <div class="ch-head">
+    <p class="ch-label">CHAPTER 03</p>
+    <h2>인구감소지역의 아이들에겐 더 멀어지는 학교</h2>
+  </div>
+
+  <figure class="art ill" style="max-width:360px"><img src="assets/img/ch03_image1.webp" alt="연두색 가방을 메고 걸어가는 아이의 뒷모습 그림" loading="lazy"></figure>
+
+  <div class="prose">
+    <p>학교 세 곳을 하나로 합치면 등굣길은 얼마나 멀어질까요. 학생들이 사는 곳으로 추정되는 대표 지점으로부터 통합 후 학교까지의 거리를 각각 구해 비교해봤습니다.</p>
+  </div>
+
+  <!-- 인터랙티브 ③ 와플: 통학거리가 늘어나는 학생 비율 -->
+  <figure class="viz" data-src="viz/ch03-pictogram/index.html" data-title="통폐합 후 통학거리가 늘어나는 학생 비율 와플차트" style="--viz-min:560px">
+    <div class="viz-loading">그래픽을 불러오는 중…</div>
+  </figure>
+
+  <div class="prose">
+    <p>학교가 멀어졌을 때 학생들이 감당해야 할 부담은 지역 여건에 따라 달라지기도 합니다. 가까운 거리에 학교가 없고 대중교통 이용도 어렵다면, 등하교는 더욱 어려워집니다. 시뮬레이션 결과, 통폐합 이후 통학거리가 늘어나는 학생들을 인구감소지역과 <span class="term" tabindex="0" data-gloss-title="그 외 지역" data-gloss="인구감소관심지역을 포함한 인구감소지역으로 지정되지 않은 지역">그 외 지역</span>으로 나눠 살펴봤습니다.</p>
+  </div>
+
+  <figure class="chart g-dist" style="max-width:773px" aria-label="통학거리 평균 증가량 비교: 인구감소지역 +4.81km, 그 외 지역 +3.24km">
+    <p class="chart-title">통학거리 평균 증가량 비교</p>
+    <div class="box">
+      <div class="rows">
+        <span class="lbl">인구감소지역</span>
+        <div class="track"><div class="bar bar--a" style="--v:80%"><span>+ 4.81km</span></div></div>
+        <span class="lbl lbl--muted">그 외 지역</span>
+        <div class="track"><div class="bar bar--b" style="--v:53.9%"><span>+3.24km</span></div></div>
+      </div>
+      <div class="base"></div>
+    </div>
+  </figure>
+
+  <div class="prose">
+    <p>인구감소지역 학생들의 통학거리는 평균 4.81㎞ 늘었습니다. 그 외 지역이 평균 3.24㎞인 데 비해 약 1.5km 높은 수치입니다. 같은 통폐합이라도 인구감소지역의 학교를 다니는 학생들에겐 등굣길 부담이 더 커지는 겁니다.</p>
+  </div>
+
+  <div class="overlap reveal" style="--iw:297px;--ov:.2">
+    <img class="overlap__img" src="assets/img/ch03_image2.webp" width="1200" height="800" alt="교육부 현판 그림" loading="lazy">
+    <blockquote class="overlap__card overlap__card--white" style="margin:0">
+      <p class="serif-quote">“(학생 지원) 통학버스, 기숙사 운영 등 통학·생활 지원 대책을 마련하고, 통합 이후 학교 이동에 따른 학생 적응 지원”</p>
+      <p class="serif-quote">“(통학 지원) 모든 학생의 통학 시간이 30분을 초과하지 않도록 지자체와 교육청이 예산 매칭을 통해 통학버스 운영”</p>
+      <small>※ 「교육환경법 시행규칙」상 학생 통학 범위는 30분 이내로 규정</small>
+    </blockquote>
+  </div>
+
+  <div class="prose">
+    <p>이러한 문제에 대해 교육부는 통학 시간을 고려해 통합 대상 학교를 지정하도록 하겠다고 밝혔습니다. 학교가 멀어지더라도 30분 이내에 통학할 수 있도록 통학버스나 기숙사를 지원한다는 방침을 내놨습니다.</p>
+  </div>
+
+  <!-- 인터랙티브 ④ 통학시간이 새로 30분을 넘는 통합중심학교 -->
+  <figure class="viz" data-src="viz/ch03-over30/index.html" data-wheel-zoom="on" data-title="통폐합 후 통학시간이 새로 30분을 넘는 통합중심학교 68곳 지도" style="--viz-min:1000px">
+    <div class="viz-loading">지도를 불러오는 중…</div>
+  </figure>
+
+  <div class="prose">
+    <p>하지만 통폐합 이후 통학시간이 30분을 초과하게 되는 학교는 총 68곳에 이르는 것으로 나타났습니다. 이중 41곳은 인구감소지역에 위치해있습니다. <mark class="todo" title="60.3%는 68곳 중 비중. 제안: 인구감소지역 통합중심학교 294곳 가운데 13.9%로, 그 외 지역(6.3%)의 2배가 넘습니다.">교육부가 약속한 ‘30분 이내’가 지켜지지 않는 지역이 인구감소지역 전체의 60.3%에 달하는 셈입니다.</mark> 학생 수가 적은 인구감소지역의 여건을 고려하면, 버스가 마을 여러 곳을 순회하기 때문에 실제 탑승시간은 더 길어질 수 있습니다.</p>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 04 ============ -->
+<section class="sec sec--light" id="ch04">
+  <div class="ch-head">
+    <p class="ch-label">CHAPTER 04</p>
+    <h2>마지막 학교가 사라지는 438개의 읍면 지역</h2>
+  </div>
+
+  <!-- 인터랙티브 ⑤ 마지막 학교가 사라지는 읍면 (스크롤 지도). 원고의 세 문단은 지도 카드 안에 들어 있음 -->
+  <figure class="viz viz--full" data-src="viz/ch04-last-school/index.html" data-title="마지막 학교가 사라지는 읍면 지도" style="--viz-min:100vh">
+    <div class="viz-loading">지도를 불러오는 중…</div>
+  </figure>
+</section>
+
+<!-- ============ CHAPTER 05 ============ -->
+<!-- CH05·06 공통 배경 사진 (이미 어둡게 처리된 이미지) -->
+<div class="green-wrap" style="background-image:linear-gradient(rgba(15,36,26,.45),rgba(15,36,26,.45)),url('assets/img/ch0506_cover.webp')">
+<section class="sec sec--green" id="ch05">
+  <div class="ch-head">
+    <p class="ch-label">CHAPTER 05</p>
+    <h2>학교가 사라지면 사람들도 떠난다</h2>
+  </div>
+
+  <div class="prose">
+    <p>시뮬레이션으로 그려본 미래가 실제 지역에서 어떤 변화로 이어질지 살펴보기 위해, 과거 통폐합 사례를 찾아봤습니다. 지난 5년간 통폐합 학교 수가 가장 많았던 지역 중 한 곳인 강원도로 눈을 돌렸습니다.</p>
+  </div>
+
+  <figure class="chart g-waffle" style="max-width:684px">
+    <p class="chart-title">2015년~2026년 8월 강원도 내 통폐합 초등학교 수</p>
+    <div class="wrap">
+      <div class="grid" data-dec="38" data-other="8" role="img" aria-label="2015년부터 2026년 8월까지 강원도에서 통폐합된 초등학교 46곳 중 인구감소지역 38곳, 그 외 지역 8곳"></div>
+      <div class="lg"><span><i style="background:#E5FB8F"></i>인구감소지역 <b>38곳</b></span><span><i style="background:#727473"></i>그 외 지역 <b>8곳</b></span></div>
+    </div>
+  </figure>
+
+  <div class="prose">
+    <p>DIVA팀은 정보공개청구를 통해 강원도교육청으로부터 과거 통폐합 학교 목록 10년치를 입수했습니다. 해당 자료에 따르면, 2015년부터 2026년 8월 1일까지 초등학교 본교 3곳과 분교장 43곳이 문을 닫고 다른 학교로 통합됐습니다. 통폐합된 초등학교 46곳 중 38곳은 인구감소지역으로 지정된 시군에 속했습니다.</p>
+  </div>
+
+  <figure class="chart g-pop" style="max-width:651px" aria-label="학령인구 변화: 통폐합 발생 인구감소지역 2015년 1월 26,312명에서 2026년 8월 14,768명으로 43.9% 감소, 강원특별자치도 전체 271,717명에서 185,022명으로 31.9% 감소">
+    <div class="box">
+      <div class="groups">
+        <div>
+          <h5>통폐합 발생 인구감소지역</h5>
+          <div class="plot">
+            <div class="col"><span class="val">26,312명</span><div class="bar" style="--h:84%"></div></div>
+            <div class="col"><span class="val">14,768명</span><div class="bar" style="--h:47.1%"></div></div>
+            <svg class="arrowsvg" viewBox="0 0 120 110" aria-hidden="true"><path class="stem" d="M8 8 C 60 4, 92 30, 96 80" fill="none" stroke="#EFEDDC" stroke-width="14" stroke-linecap="round"/><path d="M76 74 L 98 106 L 116 70 Z" fill="#EFEDDC"/></svg>
+            <span class="pct">43.9%</span>
+          </div>
+          <div class="x"><span>2015.01</span><span>2026.08</span></div>
+        </div>
+        <div>
+          <h5>강원특별자치도 전체</h5>
+          <div class="plot">
+            <div class="col"><span class="val">271,717명</span><div class="bar" style="--h:84%"></div></div>
+            <div class="col"><span class="val">185,022명</span><div class="bar" style="--h:57.2%"></div></div>
+          </div>
+          <div class="x"><span>2015.01</span><span>2026.08</span></div>
+        </div>
+      </div>
+    </div>
+  </figure>
+
+  <div class="prose">
+    <p>초등학교 통폐합이 있었던 강원도 인구감소지역의 학령인구는 2015년 초 2만 6천여 명에서 2026년 8월 1만 4천여 명으로 줄었습니다. 11년 사이 43.9%가 감소했습니다. 같은 기간 강원도 전체 감소율인 31.9%보다 12%p 높은 수치입니다.</p>
+    <p>실제로 강원도의 읍, 면, 동 지역에서 2010년부터 2023년까지 학교 폐교와 인구 감소 사이의 관계를 분석한 <span class="term" tabindex="0" data-gloss-title="자료" data-gloss="김경년·남상국(2025), 「초등학교가 사라질 때: 학교 폐쇄와 지역 인구변화의 관계」, 『교육학연구』 63(2), 383–425.">연구</span>에서는, 초등학교가 한 곳 폐교될 때마다 해당 지역의 학부모 인구는 약 18%, 초등학생 인구는 약 23%, 내국인 전체 인구는 약 5% 감소하는 것으로 나타났습니다.</p>
+    <p>국책연구기관에서도 비슷한 결과를 보고했습니다. 한국교육개발원이 발표한 미래지향적 교원 정원제도 개편 방안 보고서에 따르면, 면 지역에서는 폐교 직후 단기 충격이 나타난 뒤 시간이 지날수록 감소 폭이 커져 폐교 2년 차에는 평균 260명가량이었으나 3년 차에는 약 160%가량 증가한 수치인 410명의 인구가 감소했습니다. 이에 연구진은 면 지역에서 통학 체계와 교육과정 지원 대책이 충분히 마련된 경우에 한해 예외적으로 통폐합을 추진해야 한다고 덧붙였습니다.</p>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 06 ============ -->
+<section class="sec sec--green" id="ch06">
+  <div class="ch-head">
+    <p class="ch-label">CHAPTER 06</p>
+    <h2>통폐합 결정 전에 먼저 답해야 할 것들</h2>
+  </div>
+
+  <div class="prose">
+    <p>다만 반대 시각도 있습니다. 두 연구의 선행연구 부분에는 폐교가 인구 감소를 앞당긴다는 증거가 뚜렷하지 않다고 본 해외 연구 사례가 소개돼 있고, 한국교육개발원 보고서 역시 읍·동 지역에서는 그 영향이 미미하다고 밝혔습니다. 영향이 두드러지는 쪽은 면 지역이라는 것이 두 연구가 공통적으로 짚는 지점입니다.</p>
+    <p>DIVA팀이 분석한 결과에 따르면 마지막 초등학교가 사라지는 438개 읍면 가운데 433곳은 면 지역입니다.</p>
+    <p>교육부 방안에는 통학버스·통학택시·기숙사 지원 등의 항목이 포함돼 있습니다. 그러나 438곳 각각의 읍면에 이 지원이 구체적으로 어떻게 적용될지는 아직 정해지지 않았습니다. 대책을 마련하기 위해서는 재원이 필요합니다. 그런데 그 재원을 둘러싼 틀도 지금 바뀌고 있습니다.</p>
+    <p>지난 2일 이재명 대통령은 국회 예산 시정연설에서 반도체 호황 등으로 예상되는 세수 증가분에 대비해 미래대응기금 신설을 추진하고 있다고 밝혔습니다. 2027년도 예산안에 편성된 이 기금의 규모는 162조 3천억 원으로, 청년, 첨단산업, 지방발전 등 미래 성장동력에 투자하자는 취지입니다.</p>
+    <p>이 기금을 조성하는 과정에서 지자체 몫인 지방교부세와 시·도교육청 몫인 지방교육재정교부금이 함께 재원으로 이관됩니다. 나라살림연구소 추산에 따르면 지방교부세는 약 30조 5천억 원, 지방교육재정교부금은 약 32조 5천억 원 줄어들 것으로 예상됩니다. 소규모학교 통폐합과 직접 맞닿아 있는 쪽은 교육청 재정인 지방교육재정교부금입니다.</p>
+  </div>
+
+  <figure class="chart g-fund" style="max-width:736px" aria-label="전체 세금 529조 원 기준 현행 100조 원, 개편안 69조 7천억 원과 미래대비기금 160조 원을 비교한 그래프">
+    <p class="chart-title">지방교부세 개편안</p>
+    <div class="box">
+      <p class="unit">단위: 조 원</p>
+      <p class="total">529조</p>
+      <div class="plot">
+        <span class="tag">전체 세금</span>
+        <div class="bar"><div class="cream" style="height:81.1%"></div><div class="lime" style="height:18.9%">100조 원</div></div>
+        <div class="bar"><div class="dash" style="height:30.2%">160조 원<small>미래대비기금</small></div><div class="cream" style="height:56.6%">370조</div><div class="lime" style="height:13.2%">69조 7천억 원</div></div>
+      </div>
+      <div class="x"><span>현행</span><span>개편안</span></div>
+    </div>
+  </figure>
+
+  <div class="prose">
+    <p>지금까지는 내국세의 20.79%를 전년도 교부금과 자동으로 연동해 늘려왔습니다. 개편안은 이 연동 방식을 없애고, 전년도 교부금에 경상성장률과 학령인구 변화율(35% 반영)을 적용해 다음 해 몫을 정하기로 했습니다. 학생 수가 줄어드는 지역일수록 교부금도 함께 줄어드는 구조입니다.</p>
+    <p>시도교육감협의회는 “학생 수는 줄어도 학교 수는 그대로여서, 학교를 유지하는 데 드는 필수경비는 줄지 않는다”며 반대하고 있습니다. 반면 교육부는 이번 개편이 비용 절감이 아니라 학령인구 변화를 반영한 조정이라는 입장입니다.</p>
+  </div>
+
+  <figure class="art ill" style="max-width:540px"><img src="assets/img/ch06_image1.webp" alt="학교 세 곳과 돈다발이 학교 한 곳과 적은 돈으로 바뀌는 그림" loading="lazy"></figure>
+
+  <div class="prose">
+    <p>통합 이후의 재정 구조도 변수입니다. 지방교육재정교부금에는 학교 수를 기준으로 산정되는 항목이 있어, 소규모학교 3곳을 학생 이탈 없이 1곳으로 합치면 해당 지역 교육청이 받는 교부금이 줄 수 있습니다. 교육부는 폐지된 학교를 학교 수에 포함하는 특례를 두겠다고 했지만, 이는 5년간만 적용됩니다.</p>
+    <p>교육부는 이번 방안이 비용 절감이 아니라 교육력 제고를 위한 것이며, 통합만이 해법은 아니라는 입장입니다. 그렇다면 더더욱 재정보다 통합 이후 지역에 어떤 일이 일어날 수 있는지를 먼저 따져봐야 합니다.</p>
+    <p>이에 대해 앞선 연구들은 면 지역에서 폐교 이후 인구 감소가 나타났다고 답했고, DIVA팀은 시뮬레이션을 통해 전국 1,176곳 중에서 433곳, 약 37%의 면에서 마지막 초등학교가 사라지는 것을 확인했습니다. 이 모든 면에서 학생의 통학거리 증가, 지역 내 인구 유출, 교부세 문제가 반드시 일어난다고 단정할 수는 없지만, 통학 체계와 교육과정 지원 대책이 충분히 마련돼야 한다는 조건이 이 면들에서 어떻게 충족될지에 대한 계획 역시 공식적으로 알려진 바가 없습니다.</p>
+    <p>결정이 내려지기 전, 다음 질문들에 대한 답부터 고민해야 합니다. 이 학교가 사라지면 이 면에는 초등학교가 남는지, 남지 않는다면 아이들은 어떻게 학교에 가는지, 지역은 아이들과 학부모들을 잃고도 어떻게 유지될 수 있을지. 우리는 아마도 많은 것이 불확실한 미래 속에 아이들을 떠밀고 있는지도 모릅니다.</p>
+  </div>
+
+  <details class="limits">
+    <summary>💡 본 분석은 다음과 같은 한계를 지니고 있습니다.</summary>
+    <div>
+    <h4>1. 시나리오의 한계</h4>
+    <p>이 분석은 실제로 예정된 통폐합 결과가 아니라, 교육부가 제시한 ‘3개교 → 1개교’ 모델이 전국에서 현실화된다면 어떤 모습일지를 가정해 본 가상의 시나리오입니다. 또한 어느 학교가 통폐합 대상인지를 확정한 것이 아닙니다. 결과는 분석으로 도출한 720개 군집과 3개교 통합 모델을 기준으로 하여 통폐합 규모나 학교 조합이 달라지면 결과도 달라질 수 있습니다. 통폐합 가능 여부는 일반교실 수와 도로 접근성을 중심으로 판단했습니다. 교원 배치, 시설 운영, 지역사회 의견과 같이 실제 통폐합에 필요한 조건은 반영하지 않았습니다.</p>
+    <h4>2. 학생 분포와 통학경로 추정의 한계</h4>
+    <p>학생 규모와 거주지는 집계구 인구, 집계구 대표점, 학교별 재학생 수, 통학구역을 활용해 추정한 값입니다. 따라서 학생의 실제 거주지와 학교 배정을 정확하게 반영하지는 못합니다. 통학거리와 시간은 자동차 직행 경로를 기준으로 계산했습니다. 통학버스의 우회, 승하차와 대기시간, 실제 등교 시간대의 교통 상황은 반영하지 못했습니다. 일부 통합안은 페리 경로 등의 이유로 경로를 계산할 수 없어 해당 배정 관계를 분석에서 제외했습니다.</p>
+    <h4>3. 자료 기준 시점의 차이</h4>
+    <p>인구감소지역은 행정안전부가 5년마다 갱신해 지정합니다. 분석을 진행한 시기는 올해 8월로, 2021년 지정 기준(89곳)을 사용했습니다. 따라서 올해 10월 개정(92곳)으로 새로 추가된 부산 금정구, 경기 동두천시, 경남 통영시를 인구감소지역으로 반영하지 못했습니다. 이 세 지역의 학교는 분석에서 인구감소지역이 아닌 지역으로 분류됐습니다.</p>
+    <h4>4. 인구감소지역 분류 기준</h4>
+    <p>인구감소지역 여부는 학생의 거주지가 아니라 학생이 다니는 학교의 소재지를 기준으로 판단했습니다.</p>
+    <h4>5. 학교 공동화 분석의 범위</h4>
+    <p>마지막 학교 소멸은 읍·면 안에 공립초등학교 본교가 하나도 남지 않는 경우로 정의했습니다. 인접 지역 학교로의 접근성이나 장기적인 인구 이동은 분석하지 않았습니다.</p>
+    </div>
+  </details>
+</section>
+</div>
+
+</main>
+
+<footer class="credit">
+  <strong>SBS 데이터사이언스와 저널리즘 아카데미 5기 (DIVA팀)</strong>
+  <ul class="byline">
+    <li><b>김은희</b> <a href="mailto:dmsgmlzhd@khu.ac.kr">dmsgmlzhd@khu.ac.kr</a></li>
+    <li><b>서동균</b> <a href="mailto:seo6347@soongsil.ac.kr">seo6347@soongsil.ac.kr</a></li>
+    <li><b>윤서희</b> <a href="mailto:smpysh104@sookmyung.ac.kr">smpysh104@sookmyung.ac.kr</a></li>
+    <li><b>정수현</b> <a href="mailto:jsh3126@hanyang.ac.kr">jsh3126@hanyang.ac.kr</a></li>
+  </ul>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/article.js"></script>
+</body>
+</html>
