@@ -379,7 +379,7 @@ mark.todo{background:#FFD95A;color:#282828;padding:0 3px;border-radius:2px;curso
   .g-dist .box{padding-right:14px}.g-dist .rows{grid-template-columns:84px 1fr;gap:14px 10px}.g-dist .lbl{font-size:13px}.g-dist .base{margin-left:94px}
   .g-dist .bar{padding-right:12px}
   .g-pop .groups{gap:10px}.g-pop .box{padding:26px 10px 20px}.g-pop h5{font-size:12px}.g-pop .pct{left:auto;right:0;top:-6px;font-size:22px}.g-pop .arrowsvg{display:none}
-  .budget{font-size:12px;border-spacing:2px}.budget .total{font-size:16px}
+  .budget{font-size:12px;border-spacing:2px}.budget .total{font-size:16px;white-space:normal}
   .overlap__card{padding-left:12px;padding-right:12px}.overlap__card h4{font-size:16px}
   .serif-quote{font-size:16px}.overlap .def-card{font-size:15px}
   .g-fund .box{padding-left:6%;padding-right:6%}
