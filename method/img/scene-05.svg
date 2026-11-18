@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 610" role="img" aria-labelledby="method-s5-title"><title id="method-s5-title">BCD 군집에서 최종 D초 존치 결정</title>
 <defs><marker id="method-s5-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1 L8 5 L1 9" fill="none" stroke="#ef5941" stroke-width="1.5"/></marker></defs>
 <g font-family="sans-serif" font-size="23" fill="#282828">
-<g data-appear="5-1" data-until="5-2"><text x="100" y="95" font-weight="700">선정 군집 K3 · B–C–D</text><rect x="45" y="155" width="230" height="180" rx="12" fill="#eae7dc"/><text x="75" y="215">세 학교 재학생</text><text x="95" y="285" font-size="45" font-weight="700">100명</text>
+<g data-appear="5-1" data-until="5-2"><text x="100" y="95" font-weight="700">선정 군집 K3 · B-C-D</text><rect x="45" y="155" width="230" height="180" rx="12" fill="#eae7dc"/><text x="75" y="215">세 학교 재학생</text><text x="95" y="285" font-size="45" font-weight="700">100명</text>
 <text x="330" y="165">학교별 수용력</text><rect x="310" y="192" width="330" height="48" fill="#91dfac40"/><rect x="310" y="252" width="330" height="48" fill="#F4BCC140"/><rect x="310" y="312" width="330" height="48" fill="#91dfac40"/><text x="330" y="224">B초 112명</text><text x="330" y="284">C초 84명</text><text x="330" y="344">D초 140명</text>
 <g data-appear="5-1" data-appear-offset="0.4" data-appear-duration="0.2" font-weight="700" font-size="32"><text x="580" y="226" fill="#298348">✓</text><text x="580" y="286" fill="#ef5941">×</text><text x="580" y="346" fill="#298348">✓</text></g>
 <text data-appear="5-1" data-appear-offset="0.65" data-appear-duration="0.2" x="350" y="455" text-anchor="middle" font-weight="700">∴ 비교할 통합학교안: B초 or D초</text></g>

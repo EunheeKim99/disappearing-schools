@@ -56,15 +56,23 @@
   function pin(fig, iframe, doc){
     doc.documentElement.classList.add('pinned');
     iframe.style.position = 'sticky';
-    iframe.style.top = '0';
+    // 위쪽 고정 탭 막대(.page-tabs) 높이만큼 내려서 고정
+    // 막대가 마우스로 잠깐 펼쳐져도 지도는 움직이지 않도록, 접힘 여부에 따른 '기본 높이'를 씀
+    const barH = () => {
+      if (!document.querySelector('.page-tabs')) return 0;
+      const root = document.documentElement, cs = getComputedStyle(root);
+      return parseFloat(cs.getPropertyValue(root.classList.contains('tabs-mini') ? '--tabs-mini' : '--tabs-h')) || 0;
+    };
+    iframe.style.top = barH() + 'px';
     const win = iframe.contentWindow;
     const sync = () => {
-      const vh = window.innerHeight, H = doc.documentElement.scrollHeight;
-      const off = Math.min(Math.max(-fig.getBoundingClientRect().top, 0), Math.max(0, H - vh));
+      const vh = window.innerHeight - barH(), H = doc.documentElement.scrollHeight;
+      const off = Math.min(Math.max(barH() - fig.getBoundingClientRect().top, 0), Math.max(0, H - vh));
       if (Math.abs(win.scrollY - off) > .5) win.scrollTo(0, off);
     };
     const size = () => {
-      const vh = window.innerHeight;
+      const vh = window.innerHeight - barH();
+      iframe.style.top = barH() + 'px';
       iframe.style.height = vh + 'px';
       fig.style.height = doc.documentElement.scrollHeight + 'px';
       sync();

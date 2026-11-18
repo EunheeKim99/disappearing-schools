@@ -36,7 +36,7 @@
 #tab-method .method-title-screen { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: 100px clamp(28px, 10vw, 180px); position: relative; }
 #tab-method p, #tab-method h2, #tab-method h3, #tab-method figure { margin: 0; }
 #tab-method .method-eyebrow { color: var(--method-green); font-size: clamp(24px, 3vw, 42px); font-weight: 700; letter-spacing: .06em; margin-bottom: 30px; }
-#tab-method .method-title-screen h2 { font-size: clamp(38px, 5.5vw, 84px); line-height: 1.3; font-weight: 700; letter-spacing: -.055em; word-break: keep-all; }
+#tab-method .method-title-screen h2 { font-size: clamp(32px, 4.4vw, 66px); line-height: 1.3; font-weight: 700; letter-spacing: -.055em; word-break: keep-all; }
 #tab-method .method-scroll-hint { position: absolute; bottom: 7svh; font-size: 17px; color: #636457; }
 #tab-method .method-scroll-hint span { padding-left: 18px; font-size: 24px; }
 #tab-method .method-story { position: relative; display: grid; grid-template-columns: 56% 44%; padding: 0 clamp(24px, 4vw, 80px); }
@@ -144,7 +144,7 @@
   #tab-method .method-scene-indicator { font-size: 13px; }
   #tab-method .method-title-screen { padding: 90px 24px; }
   #tab-method .method-eyebrow { margin-bottom: 24px; font-size: 26px; }
-  #tab-method .method-title-screen h2 { font-size: clamp(32px, 7.8vw, 48px); line-height: 1.4; }
+  #tab-method .method-title-screen h2 { font-size: clamp(27px, 6.6vw, 40px); line-height: 1.4; }
   #tab-method .method-scroll-hint { font-size: 16px; }
   #tab-method .method-story { display: block; padding: 0; }
   #tab-method .method-figure { z-index: 2; top: 0; height: 43svh; min-height: 310px; padding-top: 48px; background: var(--method-bg); }
@@ -155,7 +155,7 @@
   #tab-method #method-legend, #tab-method #method-joint-legend { display: none; }
   #tab-method .method-mobile-legend { display: flex; justify-content: center; gap: 18px; font-size: 16px; line-height: 1.5; padding: 4px 12px; white-space: nowrap; }
   #tab-method .method-step { min-height: 180svh; padding: 24px 24px 0; }
-  #tab-method .method-copy { position: sticky; top: calc(max(43svh, 310px) + 16px); }
+  #tab-method .method-copy { position: sticky; top: var(--method-copy-top, calc(max(43svh, 310px) + 16px)); }
   #tab-method .method-step-number { font-size: 16px; margin-bottom: 12px; }
   #tab-method .method-step h3 { font-size: 24px; margin-bottom: 17px; }
   #tab-method .method-step .method-copy > p:not(.method-step-number) { font-size: 18px; line-height: 1.72; }

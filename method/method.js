@@ -8,6 +8,8 @@ function initMethod(root) {
   const win = doc.defaultView;
   const dialog = root.querySelector(".method-dialog");
   const scroller = root.querySelector(".method-scroller");
+  // 페이지 탭 모드: data-method-tab이 있으면 모달 대신 탭 화면으로 연다(비모달 show)
+  const tabMode = root.hasAttribute("data-method-tab");
   const mount = root.querySelector(".method-svg-mount");
   const status = root.querySelector(".method-load-status");
   const steps = Array.from(root.querySelectorAll("[data-step-id]"));
@@ -81,9 +83,6 @@ function initMethod(root) {
     nodes.extra = Object.fromEntries(Array.from(svg.querySelectorAll('[data-method-new]')).map(node => [node.dataset.methodNew, node]));
     nodes.lines = Array.from(svg.querySelectorAll('#method-allocation-lines path, #method-joint-allocation > g[marker-end] path'));
     nodes.lines.forEach(path => { path.dataset.length = path.getTotalLength(); path.style.strokeDasharray = path.dataset.length; });
-    const dataResponse = await win.fetch(new URL('data/method_example_fixture.json', base), { signal: abort.signal });
-    if (!dataResponse.ok) throw new Error('Fixture HTTP ' + dataResponse.status);
-    const fixture = await dataResponse.json();
     const secondResponse = await win.fetch(new URL('img/scene-02.svg', base), { signal: abort.signal });
     if (!secondResponse.ok) throw new Error('Scene 2 SVG HTTP ' + secondResponse.status);
     const secondDocument = new win.DOMParser().parseFromString(await secondResponse.text(), 'image/svg+xml');
@@ -104,9 +103,8 @@ function initMethod(root) {
       mask.append(draw); defs.append(mask); path.setAttribute('mask', 'url(#' + mask.id + ')');
       path.methodReveal = draw;
     });
-    const jointExample = fixture.independent_diagram_examples.joint;
-    root.querySelector('[data-method-diagram-summary]').textContent = ['A', 'B'].map((school, index) => school + '초 ' + jointExample.initial[index] + '명 → ' + jointExample.illustrative_adjusted[index] + '명').join(' / ');
-    await prepareLaterScenes(base, fixture);
+    // HTML and SVG files own their text; loading must not overwrite editorial changes.
+    await prepareLaterScenes(base);
     createTimeline();
     renderAt(0);
   }
@@ -142,7 +140,7 @@ function initMethod(root) {
   }
 
   function renderAt(position) {
-    if (!nodes) return;
+    if (!nodes || !state) return; // 그림 준비가 끝나기 전 크기 변경으로 호출되는 경우 건너뜀
     if (timeline) timeline.time(Math.max(0, Math.min(steps.length, position)), true);
     else Object.keys(state).forEach((key) => { state[key] = 1; });
     const reduce = motion.matches;
@@ -212,24 +210,7 @@ function initMethod(root) {
     debugState = { ...state, sameSvg: svg === svgIdentity, svgCount: mount.querySelectorAll("svg").length };
   }
 
-  async function prepareLaterScenes(base, fixture) {
-    const schools = Object.fromEntries(fixture.schools.map(s => [s.id, s]));
-    const rows = fixture.stage4_commute_rows;
-    const weight = rows.reduce((sum, row) => sum + row.student_weight, 0);
-    const burden = Object.fromEntries(['B', 'D'].map(k => [k, rows.reduce((sum, row) => sum + row.student_weight * Math.max(row['after_' + k + '_min'] - row.before_min, 0), 0) / weight]));
-    if (fixture.schools.some(s => s.capacity !== s.rooms * 28) || ['B','D'].some(k => Math.abs(burden[k] - fixture.stage4_mean_additional_min['retained_' + k]) > 1e-8)) throw new Error('Inconsistent capacity or weighted commute fixture');
-    const national = fixture.national_actual_results;
-    const format = value => Number(value.toFixed(2)).toLocaleString('ko-KR');
-    const bindings = {
-      'abc-capacity': 'C초 ' + schools.C.capacity + '명 < ABC ' + ['A','B','C'].reduce((n,k) => n + schools[k].students, 0) + '명',
-      'bcd-total': weight + '명',
-      'burden-B': format(burden.B) + '분', 'burden-D': format(burden.D) + '분',
-      'burden-comparison': 'B초 존치 ' + format(burden.B) + '분 / D초 존치 ' + format(burden.D) + '분',
-      'national-clusters': national.final_clusters.toLocaleString('ko-KR') + '개 군집',
-      'national-summary': national.final_clusters + '개 군집 · 통합중심학교 ' + national.retained_schools + '개교 · 폐교 대상 ' + national.closed_schools.toLocaleString('ko-KR') + '개교'
-    };
-    fixture.candidates.forEach(c => { bindings['score-' + c.id] = c.access_score_min + '분'; });
-    ['B','C','D'].forEach(k => { bindings['capacity-' + k] = k + '초 ' + schools[k].capacity + '명 ' + (schools[k].capacity >= weight ? '✓' : '×'); });
+  async function prepareLaterScenes(base) {
     nodes.laterScenes = [];
     for (const scene of [3,4,5]) {
       const response = await win.fetch(new URL('img/scene-0' + scene + '.svg', base), { signal: abort.signal });
@@ -245,7 +226,6 @@ function initMethod(root) {
       drawing.draws.forEach(path => { path.dataset.length = path.getTotalLength(); path.style.strokeDasharray = path.dataset.length; });
       nodes.laterScenes.push(drawing);
     }
-    root.querySelectorAll('[data-bind]').forEach(element => { if (bindings[element.dataset.bind] !== undefined) element.textContent = bindings[element.dataset.bind]; });
     nodes.national = root.querySelector('.method-national');
     const map = nodes.national.querySelector('img');
     map.src = new URL('img/final-school-map.png', base).href;
@@ -308,7 +288,12 @@ function initMethod(root) {
     else dialog.style.setProperty('--method-modal-unit', (scroller.clientHeight / 100) + 'px');
     steps.forEach(step => {
       const copy = step.querySelector('.method-copy');
-      if (mobile) copy.style.removeProperty('--method-copy-top');
+      if (mobile) {
+        const preferredTop = Math.max(scroller.clientHeight * .43, 310) + 16;
+        const readableTop = scroller.clientHeight - copy.offsetHeight - 24;
+        if (readableTop < preferredTop) copy.style.setProperty('--method-copy-top', readableTop + 'px');
+        else copy.style.removeProperty('--method-copy-top');
+      }
       else {
         const preferredTop = Math.max(88, Math.min(130, scroller.clientHeight * .14));
         // Long explanations can scroll past the top so their final notes remain reachable.
@@ -494,9 +479,9 @@ function initMethod(root) {
     if (dialog.open) return;
     opener = source instanceof win.HTMLElement ? source : doc.activeElement;
     lockBackground();
-    try { dialog.showModal(); } catch (error) { restoreBackground(); throw error; }
+    try { tabMode ? dialog.show() : dialog.showModal(); } catch (error) { restoreBackground(); throw error; }
     scroller.scrollTop = 0;
-    root.querySelector(".method-close").focus({ preventScroll: true });
+    (tabMode ? scroller : root.querySelector(".method-close")).focus({ preventScroll: true });
     if (!readyPromise) readyPromise = prepare().catch((error) => {
       if (!destroyed) { mount.setAttribute("aria-busy", "false"); message("도식을 불러오지 못했습니다. HTTP 서버 실행과 img/scene-01.svg 경로를 확인해주세요."); }
       readyPromise = null;
